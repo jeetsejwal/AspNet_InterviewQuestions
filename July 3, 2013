@@ -1,0 +1,713 @@
+ASP.NET,MVC,Jquery, INTERVIEW QUESTIONS AND ANSWERS.
+ C# OOPS INTERVIEW QUESTIONS-ANSWERS WITH EXAMPLES
+
+
+1. We have two classes BaseClass and childClass, ChildClass inheret base class. If we make the object of child class then which class counstructor called first?
+Ans: Base class constructor will be call first.
+[Image: BaseClassConstructorCalledFirst.png]
+
+
+2. Can we declare an Abstract method in non-abstract class?
+Ans: No
+[Image: CanWeDeclareAbstractMethodInNonAbstractClass-Error.png]
+
+
+3. Can we give the return type of constructor?
+Ans: No
+[Image: CreateFunctionSameAsClassName1Error.png]
+
+
+4. If we have an abstract method in base class, then we must need to override(or use new keyword) it or not?
+Ans: Yes, if we not override it then it give error.
+[Image: Error-without-override-abstract-Functions.png]
+
+
+5. We know that Base class constructor called first. But if we creating object with parameters, and base class have both constructor default and parameterized, then which base class constructor call first.
+Ans: Base class default constructor called first.
+[Image: ParamatirizedConstructor1.png]
+
+
+6. Then what you can do that base class parameterized constructor call first.
+Ans: We can use "Base" keyword
+
+
+[Image: UseOfBaseKeywordWithConstructor.png]
+
+ Asp.net View State Interview Questions:
+ ASP.NET VIEW STATE INTERVIEW QUESTIONS ANSWERS FOR EXPERIENCED
+
+ If you are prepare for Interview then, this set of questions would be add some questions related to Asp.net view state(state management) in your brain Smile . So lets check your knowledge about view state. If you think you have enough knowledge about view state then you can take it as a Quiz.
+
+So lets start asp.net view state quiz
+
+1). What is View State in Asp.net?
+Ans: View state is nothing but a method that the ASP.NET use to preserve page and control values between postbacks. When the HTML markup for the page is rendered, the current state of the page and values that must be retained during postback are serialized into base64-encoded strings. This information is then put into the view state hidden field.
+
+2). View state is client-side or server side state management techenique?
+Ans: View state is client-side state management techenique
+
+3). What are the client-side state management techenique supported by ASP.NET?
+Ans: View state
+Control state
+Hidden fields
+Cookies
+Query strings
+
+4). View state is used by Asp.net page atomatically or we need to apply it manuly?
+Ans: View state is used automatically by the ASP.NET page framework to persist information that must be preserved between postbacks.
+
+
+5). When you can use(take advantage of vs) view state?
+or What you can do by use view state?
+Ans: a) Keep values between postbacks without storing them in session state or in a user profile.
+b) Store the values of page or control properties that you define.
+c) Create a custom view state provider that lets you store view state information in a SQL Server database or in another data store.
+
+6). What are the advantages of using view state?
+Ans: No server resources are required : The view state is contained in a structure within the page code.
+Simple implementation : View state does not require any custom programming to use. It is on by default to maintain state data on controls.
+Enhanced security features : The values in view state are hashed, compressed, and encoded for Unicode implementations, which provides more security than using hidden fields.
+
+7). What are the limitations of view state?
+Ans: Limitations:
+Because view state is stored in the page, it results in a larger total page size.
+ASP.NET uses view state only with page and control properties.
+View state isn't a good place to store sensitive information that the client shouldn't be allowed to see.
+
+
+1).What is state management?
+Ans: State management is the process by which you maintain state and page information over multiple requests for the same or different pages.
+
+2).Http is stateless, What does this mean?
+Ans: Stateless protocol is a communications protocol that treats each request as an independent transaction that is unrelated to any previous request so that the communication consists of independent pairs of requests and responses.
+
+3).What is Session?
+Ans: We know that Http is stateless, means when we open a webpage and fill some information and then move to next page then the data which we have entered will lost.
+It happed do to Http protocol stateless nature. So here session come into existence, Session provide us the way of storing data in server memory. So you can store your page data into server
+memory and retrieve it back during page postbacks.
+
+4).What are the Advantage and disadvantage of Session?
+Ans: Advantages:
+Session provide us the way of maintain user state/data.
+It is very easy to implement.
+One big advantage of session is that we can store any kind of object in it. :eg, datatabe, dataset.. etc
+By using session we don't need to worry about data collesp, because it store every client data separately.
+Session is secure and transparent from the user.
+Disadvantages:
+Performance overhead in case of large volumes of data/user, because session data is stored in server memory.
+Overhead involved in serializing and de-serializing session data, because in the case of StateServer and SQLServer session modes, we need to serialize the objects before storing them.
+
+5).What is Session ID in Asp.net?
+Ans: Asp.Net use 120 bit identifier to track each session. This is secure enough and can't be reverse engineered. When client communicate with server, only session id is transmitted, between them. When client request for data, ASP.NET looks on to session ID and retrieves corresponding data.
+
+6).By default where the sessions ID's are stored ?
+Ans: By default, the unique identifier for a session is stored in a non-expiring session cookie in the browser. You can specify that session identifiers not be stored in a cookie by setting the cookieless attribute to true in the sessionState configuration element.
+We can also configure our application to store it in the url by specifying a "cookieless" session
+The ASP Session cookie has this format:-
+ASPSESSIONIDACSSDCCC=APHELKLDMNKNIOJONJACDHFN
+
+
+7).Where does session stored if cookie is disabled on client’s machine?
+Ans: If you want to disable the use of cookies in your ASP.NET application and still make use of session state, you can configure your application to store the session identifier in the URL instead of a cookie by setting the cookieless attribute of the sessionState configuration element to true, or to UseUri, in the Web.config file for your application.
+The following code example shows a Web.config file that configures session state to use cookieless session identifiers.
+
+Code:
+<configuration>
+  <system.web>
+    <sessionState
+      cookieless="true"
+      regenerateExpiredSessionId="true"
+      timeout="30" />
+  </system.web>
+</configuration>
+
+
+8).Can you describe all the property set in web.config under session state?
+Ans:
+Code:
+<configuration>
+  <sessionstate
+      mode="inproc"
+      cookieless="false"
+      timeout="20"
+      sqlconnectionstring="data source=127.0.0.1;user id=<user id>;password=<password>"
+      server="127.0.0.1"
+      port="42424"
+  />
+</configuration>
+Mode: The mode setting supports three options: inproc, sqlserver, and stateserver. As stated earlier, ASP.NET supports two modes: in process and out of process. There are also two options for out-of-process state management: memory based (stateserver), and SQL Server based (sqlserver). We'll discuss implementing these options shortly.
+Cookieless: The cookieless option for ASP.NET is configured with this simple Boolean setting.
+Timeout: This option controls the length of time a session is considered valid. The session timeout is a sliding value; on each request the timeout period is set to the current time plus the timeout value
+Sqlconnectionstring: The sqlconnectionstring identifies the database connection string that names the database used for mode sqlserver.
+Server: In the out-of-process mode stateserver, it names the server that is running the required Windows NT service: ASPState.
+Port: The port setting, which accompanies the server setting, identifies the port number that corresponds to the server setting for mode stateserver.
+
+9).What are Session Events?
+Ans: There are two types of session events available in ASP.NET:
+Session_Start
+Session_End
+You can handle both these events in the global.asax file of your web application. When a new session initiates, the session_start event is raised, and the Session_End event raised when a session is abandoned or expires.
+
+10).How you can disable session?
+Ans: If we set session Mode="off" in web.config, session will be disabled in the application. For this, we need to configure web.config the following way:
+
+
+11).What are the session modes available in asp.net?
+Ans:
+Off
+InProc
+StateServer(Out-Proc)
+SQLServer
+Custom
+
+12).What is the default session modes in asp.net?
+Ans: InProc
+
+13).What are the disadvantages of using InProc session mode?
+Ans: Its stores session information in the current Application Domain.
+So it will lose data if we restart the server.
+
+14).Session_End() event is supported by which session mode only?
+Ans: Session_End() event is supported by InProc mode only.
+
+15).What do you understand by StateServer(Out-Proc) mode?
+Ans: StateServer session mode is also called Out-Proc session mode. StateServer uses a stand-alone Windows Service which is independent of IIS and can also be run on a separate server. This session state is totally managed by aspnet_state.exe. This server may run on the same system, but it's outside of the main application domain where your web application is running. This means if you restart your ASP.NET process, your session data will still be alive.
+
+16).Under StateServer(Out-Proc) mode the session state is managed by?
+Ans: aspnet_state.exe
+
+17).What are the advantages and disadvantages of StateServer(Out-Proc) Session mode?
+Ans: Advantages:
+It keeps data separate from IIS so any issues with IIS will not hamper session data.
+It is useful in web farm and web garden scenarios.
+Disadvantages:
+Process is slow due to serialization and de-serialization.
+State Server always needs to be up and running.
+
+18).Under SQLServer Session Mode where the session data store?
+Ans: In SQLServersession mode, session data is serialized and stored in A SQL Server database.
+
+19).What is the big disadvantage of SqlServer Session mode?
+Ans: The main disadvantage of SqlServer Session mode storage method is the overhead related with data serialization and de-serialization.
+
+20).What are the advantages and disadvantages of SqlServer Session mode?
+Ans: Advantages:
+Session data not affected if we restart IIS.
+The most reliable and secure session management.
+It keeps data located centrally, is easily accessible from other applications.
+Very useful in web farms and web garden scenarios.
+Disadvantages:
+Processing is very slow in nature.
+Object serialization and de-serialization creates overhead for the application.
+As the session data is handled in a different server, we have to take care of SQL Server. It should be always up and running. 
+
+11).What are the session modes available in asp.net?
+Ans:
+Off
+InProc
+StateServer(Out-Proc)
+SQLServer
+Custom
+
+12).What is the default session modes in asp.net?
+Ans: InProc
+
+13).What are the disadvantages of using InProc session mode?
+Ans: Its stores session information in the current Application Domain.
+So it will lose data if we restart the server.
+
+14).Session_End() event is supported by which session mode only?
+Ans: Session_End() event is supported by InProc mode only.
+
+15).What do you understand by StateServer(Out-Proc) mode?
+Ans: StateServer session mode is also called Out-Proc session mode. StateServer uses a stand-alone Windows Service which is independent of IIS and can also be run on a separate server. This session state is totally managed by aspnet_state.exe. This server may run on the same system, but it's outside of the main application domain where your web application is running. This means if you restart your ASP.NET process, your session data will still be alive.
+
+16).Under StateServer(Out-Proc) mode the session state is managed by?
+Ans: aspnet_state.exe
+
+17).What are the advantages and disadvantages of StateServer(Out-Proc) Session mode?
+Ans: Advantages:
+It keeps data separate from IIS so any issues with IIS will not hamper session data.
+It is useful in web farm and web garden scenarios.
+Disadvantages:
+Process is slow due to serialization and de-serialization.
+State Server always needs to be up and running.
+
+18).Under SQLServer Session Mode where the session data store?
+Ans: In SQLServersession mode, session data is serialized and stored in A SQL Server database.
+
+19).What is the big disadvantage of SqlServer Session mode?
+Ans: The main disadvantage of SqlServer Session mode storage method is the overhead related with data serialization and de-serialization.
+
+20).What are the advantages and disadvantages of SqlServer Session mode?
+Ans: Advantages:
+Session data not affected if we restart IIS.
+The most reliable and secure session management.
+It keeps data located centrally, is easily accessible from other applications.
+Very useful in web farms and web garden scenarios.
+Disadvantages:
+Processing is very slow in nature.
+Object serialization and de-serialization creates overhead for the application.
+As the session data is handled in a different server, we have to take care of SQL Server. It should be always up and running.
+
+MVC INTERVIEW QUESTIONS ANSWERS
+
+1. What is a View Engine?
+Ans:- View Engines are responsible for rendering the HTML from your views to the browser. The view engine template will have different syntax for implementation.
+
+2. What is Razor view engine?
+Ans:- The Razor view engine is an advanced view engine from Microsoft, It is launched with MVC 3 (in VS 4.0). Razor using an @ character instead classic ASP.NET(.aspx) <% %>
+and Razor does not require you to explicitly close the code-block, this view engine is parsed intelligently by the run-time to determine what is a presentation element and what is a code element.
+
+3. What are the two popular asp.net mvc view engines?
+Ans:- 1. Razor
+2. .aspx
+
+4. What are the file extension for Razore view engine files?
+Ans:- Razor syntax have the special file extension cshtml (Razor with C#) and vbhtml (Razor with VB).
+
+5. Can you give a simple example of textbox?
+Ans:- @Html.TextBox("Name")
+
+6. What HTML code will be produce by "@Html.TextBox("Name")"?
+Ans:- It will produce:-
+<input id="Name" name="Name" type="textbox" />
+
+7. What is the difference between @Html.TextBox and @Html.TextBoxFor
+Ans:- Finaly both produce the same HTML but Html.TextBoxFor() is strongly typed with any model, where as Html.TextBox isn't.
+For more click here http://tutoriz.com/Thread-DIFFERENCE-BET...TextBoxFor
+DIFFERENCE BETWEEN @Html.TextBox and @Html.TextBoxFor
+In Razor view engine we use @Html.TextBox and @Html.TextBoxFor for textbox so what is the difference between @Html.TextBox and @Html.TextBoxFor?
+
+Finally both produce the same HTML[/align] but Html.TextBoxFor() is strongly typed with any model, where as Html.TextBox isn't.
+For Example:-
+@Html.TextBox("Name")
+@Html.TextBoxFor(m => m.Name)
+both will produce
+<input id="Name" name="Name" type="textbox" />
+Generally two things:
+a) The typed TextBoxFor will generate your input names for you. This is usually just the property name but for properties of complex types can include an '_' such as 'customer_name'
+b) Using the typed TextBoxFor version will allow you to use compile time checking. So if you change you model then you can check whether there are any errors in your views.
+
+
+8. TextBoxFor input extension is first time introduce in which MVC version?
+Ans:- In MVC2
+
+9. What is the syntax for server side comment in razor view?
+Ans:-
+@* here is the code to comment *@
+http://tutoriz.com/Thread-Single-line-co...zor-syntex
+Single line comment in Razor syntex
+For Single line comment
+Code:
+@* single line comment *@
+
+For Multiline comment
+     Code:
+     @*
+         this is first line, and it is comment
+         this is second line
+     *@
+
+
+10. How to add Namespaces in Razor view engine?
+Ans:- @using YourCustomNamespace
+
+What is the difference between RAZOR VIEW and ASPX VIEW ENGINE?
+Ans:- http://tutoriz.com/Thread-RAZOR-VIEW-VS-...DIFFERENCE
+
+RAZOR VIEW VS ASPX VIEW ENGINE | DIFFERENCE | PERFORMANCE
+
+Razor View Engine ::
+1.Razor Engine is a newly launched advance view engine that was introduced with MVC3.
+2.Razor view engine File extension for C# is .cshtml
+3.Razor view engine File extension for VB is .vbhtml
+4.Razor view engine syntax is easy to learn than Web Form Engine syntax.
+5.In Razor view syntax we use @ Symbol before any tag
+6.For comment we can use @*.....*@
+7.We need not to enclosed the code block/tag between @. Ex-
+8.Razor version has only three transition characters (@)
+9.Namspace for Razor is System.Web.Razor
+10.Razor is littel bit slower than aspx view engine
+
+Aspx View Engine::
+1.Aspx view Engine is the default view engine for the Asp.net MVC that is included with Asp.net from the beginning.
+2.In Web form(aspx view) engine it .aspx
+3.It is .aspx in web form engine, (Same in both VB and C#)
+4.Not easy as Razor view engine syntax
+5.In aspx view Engine we use <% and %>
+6.For comment we can use /*...*/ (C#)
+7.We need to enclosed the code block/tag between <% and %>
+8.Aspx version has 21 transition characters (the <% and %>)
+9.Namspace for Web form is System.Web.Mvc.WebFormViewEngine
+10.Aspx view engine is littel bit faster than Razor view engine
+
+JQUERY INTERVIEW QUESTIONS AND ANSWERS 
+
+
+1).What is Jquery?
+jquery is javascript library which required a jquery.js file. After that you can write the jquery as fallows. It uses "$" as the short hand to write jquery code.
+Simple Syntax is
+
+Code:
+$(document).ready(function()
+{
+    function body
+});
+
+2).When Jquery founded and by whome?
+It was released in January 2006 at BarCamp NYC by John Resig(Jquery founder).
+
+
+3).What scripting language is jQuery written in?
+Ans: JavaScript
+
+
+4).Write a basic code for add jquery library to pages?
+Code:
+<html>
+<head>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript">
+// You can write the code here
+</script>
+</head>
+<body>
+<a href="http://www.tutoriz.com/">Jquery Interview Questions and Answers</a>
+</body>
+</html>
+
+
+5).What is jQuery Selectors? Give some examples.
+Ans: Selectors are used in jQuery to find out DOM elements. Selectors can find the elements via ID, CSS, Element name and hierarchical position of the element.
+
+Code:
+Selector     Example          Selects
+*           $("*")          All elements
+#id          $("#lastname")      The element with id=lastname
+.class          $(".intro")              All elements with class="intro"
+element      $("p")          All p elements
+For more click here http://www.w3schools.com/jquery/jquery_r...ectors.asp
+
+
+6).What $("div.tutoriz") will select?
+Ans: All the div element with tutoriz class.
+
+
+7).jQuery uses CSS selectors and XPath expressions to select elements true or false?
+Ans:- True
+
+
+8).What are the fastest selectors in Jquery?
+Ans: ID and element selectors are the fastest selectors
+
+
+9).What are the slower selecoters in Jquery?
+Ans: Class selectors are slower
+
+10).Which one is faster Jquery ID selector or JavaScript getElementById()?
+(Jquery ID selector vs JavaScript getElementById())
+Ans: JavaScript getElementById() is faster than Jquery Id ($("#elementID")) selector
+
+
+11).Where Jquery code execute? On client browser or server browser?
+On client browser
+
+
+
+12).Write the code for selecting the
+1st div element, 4th div element
+last div, and for even and odd div elemets also.
+one by one?
+apply the red color on the above div.
+Code:
+<div class="questions">
+        <div class="box"> Question</div>
+    <div class="box"> Question</div>
+    <div class="box"> Question</div>
+    <div class="box"> Question</div>
+    <div class="box"> Question</div>
+    <div class="box"> Question</div>
+</div>
+Code for first div       : $("div.questions > div:first").css("color", "red");
+Code for 4th div         : $("div.questions > div:nth-child(4)").css("color", "red");
+Code for last div        : $("div.questions > div:last").css("color", "red");
+Code for even div        : $("div.questions > div:even").css("color", "red");
+Code for odd div         : $("div.questions > div:odd").css("color", "red");
+
+13).Write the code for select second last div element?
+Code for second last div : $("div.questions > div::nth-last-child(2)").css("color", "red"); <!-- Introduced in CSS3 -->
+
+14).What are the advantages of using jQuery over JavaScript in ASP.NET web application
+Ans:
+Below are the advatages of using jQery over JavaScript
+a>.Jquery is well written optimised javascript code so
+it will be faster in execution unless we write same standard optimised javascript code.
+b>.Jquery is concise java script code ,means minimal ammount of code
+is to be written for the same functionality than the javascript.
+c>.Javascript related Development is fast using Jquery because most of the
+functionality is already written in the library and we just need to use that.
+d>.Jquery has cross browser support ,so we save time for supporting all the browsers.
+
+
+15).What is Chaining in jQuery?
+Ans:
+In jQuery, Chaining means to connect multiple functions, events on selectors. look at Sample Code 1 and 2.
+Code:
+Sample Code 1
+​$(document).ready(function(){
+    $('#dvContent').addClass('dummy');
+    $('#dvContent').css('color', 'red');
+    $('#dvContent').fadeIn('slow');
+});​
+
+Sample Code 2 (using Chaining)
+​$(document).ready(function(){
+    $('#dvContent').addClass('dummy')
+          .css('color', 'red')
+          .fadeIn('slow');    
+});​
+Both the sample codes above will perform the exact same thing but the only difference is that Sample code 2 is using Chaining. But Code 2 is faster and shorter then Code 1.
+The problem with the Sample Code 1 is that for every statement, jQuery has to search the entire DOM and find the element and after that executes the attached function on it. But when chaining is used, then jQuery has to find the element only once and it will execute all the attached functions one by one. This is the advantage of Chaining.
+For read more click on the below link
+http://jquerybyexample.blogspot.com/2012...query.html
+http://tobiasahlin.com/blog/quick-guide-...in-jquery/
+
+16).Is jQuery a library for client scripting or server scripting?
+Ans: Client Script
+
+17).What is jQuery & its significance? Why it is so popular?...
+
+
+18).What are features of JQuery
+or
+What can be done using JQuery?
+Features of Jquery
+1. One can easily provide effects and can do animations.
+2. Applying / Changing CSS.
+3. Cool plugins.
+4. Ajax support
+5. DOM selection events
+6. Event Handling
+
+
+19).How to check Jquery UI loaded or not?
+Ans: // Checking if jQuery UI is loaded or not
+Code:
+if($.ui){
+    // jQuery UI is loaded
+}else {
+    // jQuery UI is not loaded
+}
+
+20).How check currently loaded jQuery UI version on the page?
+Ans: // Returns jQuery UI version (ex: 1.8.2) or undefined
+$.ui.version
+
+
+21).Write the code for setting datetimepicker on textbox click.
+If below is our textbox
+<input type="text" id="abc" name=%26quot%3Bacc%26quot%3B value="Select Date" />
+then Jquery code will be
+$("#abc").datepicker();
+
+
+
+22).If you have a table, how you will apply the two differt color on alternate rows using Jquery?
+Code:
+<table border="1">
+  <tr><td>Vikas Ahlawat</td></tr>
+  <tr><td>Edwin George</td></tr>
+  <tr><td>Rohit Khurana</td></tr>
+  <tr><td>Gyan Singh</td></tr>
+</table>
+Ans :
+<script src="jquery.js"></script>
+<script>
+$(document).ready(function()
+{
+  $("tr:even").css("background-color", "#f4f4f8");
+  $("tr:odd").css("background-color", "#ffffff");
+});
+</script>
+
+
+23).Name the Jquery method which is used to hide selected elements?
+Ans: .hide()
+
+
+24).Name the Jquery methods which are used for apply css class?
+Ans:
+$("#Id1").addClass('YourClassName'); // for apply class
+$("#Id1").removeClass('YourClassName'); // for remove class
+
+
+25).What is the use of attr() method in Jquery?
+The attr() method sets or returns attributes and values of the selected elements.
+When this method is used to return the attribute value, it returns the value of the first matched element.
+When this method is used to set attribute values, it sets one or more attribute/value pairs for the set of matched elements.
+Code:
+$(selector).attr(attribute) //it will return the value of an attribute
+$(selector).attr(attribute,value) //it will set the value of an attribute
+$(selector).attr({attribute:value, attribute:value,...}) //for set multiple attribute
+
+26).Can we use both jQuery and AJAX together?
+Ans: yes
+
+27).Tell the name of jQuery method which is used to perform an asynchronous HTTP request?
+Ans: jQuery.ajax()
+
+28).What is the use of jquery load() method?
+The jQuery load() method is a powerful AJAX method.
+The load() method loads data from a server and puts the returned data into the selected element without reload the complate page.
+Ex:The following example loads the content of the file "demo_test.txt" into a specific <div> element
+$("#div1").load("demo_test.txt");
+
+
+29).Can we use our own specific charactor in the place of $ sigh in Jquery?
+Ans: Yes
+You can also create your own shortcut very easily. The noConflict() method returns a reference to jQuery, that you can save in a variable, for later use. Here is an example:
+Code:
+var vikas = $.noConflict();
+vikas(document).ready(function(){
+  vikas("button").click(function(){
+    vikas("p").text("jQuery is still working!");
+  });
+});
+
+30).Name the 5 Jquery events?
+Ans:-
+jQuery Events
+jQuery click() event.
+jQuery dblclick() event.
+jQuery mouseenter() event.
+jQuery mouseleave() event.
+jQuery mousedown() event.
+jQuery mouseup() event.
+jQuery hover() event.
+jQuery focus() and blur() events.
+
+
+
+
+31).What is difference between jQuery's ready and holdReady?
+jQuery's ready is an event which gets triggered automatically when DOM is ready while holdReady is a signal/flag to hold this triggering. holdReady was included in 1.6 version and it works only if used before the execution/triggering of ready event. Once ready event is fired, it has nothing to do. It is useful in dynamically loading scripts before the ready starts. It release ready event execution when used with a true parameter.
+
+32).What is Jquery $.ajax() method?
+The Jquery ajax() method is used to perform an AJAX (asynchronous HTTP) request.
+
+33).Name any four paremeter of Jquery ajax method?
+url : Specifies the URL to send the request to. Default is the current page
+type : Specifies the type of request. (GET or POST)
+data : Specifies data to be sent to the server
+cache: A Boolean value indicating whether the browser should cache the requested pages. Default is true
+beforeSend(xhr): A function to run before the request is sent
+
+34).When can you use jQuery?
+JQuery can be used to perform
+1.Call methods on specific events
+2.Traverse the documents
+3.For apply CSS
+4.Manipulation purpose and
+5.To add effects too.
+6.For apply animations
+7.For give atractive look (dialogbox etc)
+8.For asynchronous calls ($.ajax())
+
+35).What is the use of noConflict() method in Jquery?
+
+36).How to select combobox selecte value and text using Jquery?
+Example:
+var StateID = $("#StateCbx").val(); // Or you can use it $("#iStateID").val();
+var StateName = $("#StateCbx option:selected").text();
+alert("Selected combobox text is= " + StateName + " and value is= " + StateID);
+
+37).JQuery html() method works for both HTML and XML documents?
+No, It only works for HTML
+
+38).Can you call C# codebehind method using Jquery?
+Yes
+
+39).How can you call a method inside code-behind using jQuery?
+By $.ajax and by declaring method a WebMethod
+
+40).What is the use of jQuery.data()?
+jQuery’s data method gives us the ability to associate arbitrary data with DOM nodes and JavaScript objects. This makes our code more concise and clean.
+For live example click here http://tutorialzine.com/2010/11/jquery-data-method/
+
+41).Is jQuery a W3C standard?
+No
+
+42).What is the use of jquery .each() function?
+Basically, the jQuery .each() function is used to loop through each element of the target jQuery object. Very useful for multi element DOM manipulation, looping arrays and object properties.
+Example:-
+In this example alert box will open 3 times because dom contain 3 <li> tags
+
+Code:
+<script>
+$(document).ready(function(){
+  $("button").click(function(){
+    $("li").each(function(){
+      alert($(this).text())
+    });
+  });
+});
+</script>
+
+<ul>
+<li>Coffee</li>
+<li>Milk</li>
+<li>Soda</li>
+</ul>
+
+43).If you have a server control(asp.net server control, Button) and on the click of button you want to call a jquery function, So how you will call a jquery function without postback?
+ASP.NET provides the OnClientClick property to handle button clicks. You can use this property on Button, LinkButton and ImageButton. The same OnClientClick property also allows you to cancel a postback.
+So I can use OnClientClick property and Jquery function will return false.
+Example
+Code:
+<script type="text/javascript">
+    function callMe()
+    {
+    alert('Hello');
+        return false;
+    }
+</script>
+<asp:Button ID="Button1" runat="server" OnClientClick="return callMe();" Text="Button" />
+
+44).What is the use of .Size() method in Jquery?
+Jquery's .size() method returns number of element in the object. That means that you can count the number of elements within an object.
+
+45).What is the difference between jquery.size() and jquery.length?
+Jquery.size() and jquery.length both returns the number of element found in the object. But, jquery.length is faster than jquery.size() because size() is a method but length is a property.
+
+46).How you can debug Jquery code/What are the technique to debug jquery?
+Add the keyword "debugger;" to the line from where we want to start the debugging and then run the Visual Studio in Debug mode by pressing F5 or using the Debug button.
+
+47).Difference between jQuery-x.x.x.js and jQuery.x.x.x min.js?
+jQuery-x.x.x.js = Pretty and easy to read Smile Read this one.
+jQuery.x.x.x min.js = Looks like jibberish! But has a smaller file size. Put this one on your site for fast loading and less size.
+
+48).How to get the server response from an AJAX request using Jquery?
+When invoking functions that have asynchronous behavior We must provide a callback function to capture the desired result. This is especially important with AJAX in the browser because when a remote request is made, it is indeterminate when the response will be received.
+Below an example of making an AJAX call and alerting the response (or error):
+Code:
+$.ajax({
+url: 'pcdsEmpRecords.php',
+success: function(response) {
+alert(response);
+},
+error: function(xhr) {
+alert('Error! Status = ' + xhr.status);
+}
+});
+
+49).Do we need to add the JQuery file both at the Master page and Content page as well?
+No, if the Jquery file has been added to the master page then we can access the content page directly without adding any reference to it.
+This can be done using this simple example
+<script type="text/javascript" src="jQuery-1.4.1-min.js"></script>
+
+50).Difference between onload() and document.ready() function used in jQuery?
+We can add more than one document.ready() function in a page.
+we can have only one onload function.
+Document.ready() function is called as soon as DOM is loaded.
+body.onload() function is called when everything (DOM, images)gets loaded on the page.
